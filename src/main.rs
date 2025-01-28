@@ -19,31 +19,39 @@ struct Args {
 }
 
 fn main() {
-    // init list of ascii chars
-    let _ascii: Vec<char> = (33..128)
-        .map(|c| std::char::from_u32(c as u32).unwrap())
-        .collect();
-
     // output
-    let mut password: Vec<char> = Vec::new();
+    let mut password: Vec<u32> = Vec::new();
 
     // parse input
     let args = Args::parse();
 
+    // get desired len of password
     let arr_len: usize = args.length.parse().unwrap();
+
+    // create
+
+    // if avoid, get vector of chars
+    // let avoids: Vec<usize> = args.avoid.chars().map(|c| c as usize).collect();
 
     // append n chars to vector based on length flag
     for _ in 0..arr_len {
         // get random value
-        let rando: usize = choose_rand(0, 95) as usize;
+        let mut rando: u32 = choose_rand(33, 128) as u32;
+
+        // check if repeats
+        if args.repeats && password.contains(&rando) {
+            rando = (rando + 33) % 95
+        }
+
+        // create ascii char
+        // let _ascii: char = std::char::from_u32(rando as u32).unwrap();
 
         // append to output vector
-        password.push(_ascii[rando]);
+        password.push(rando);
     }
 
     // turn into string and return password
-    let password_str: String = password.into_iter().collect();
-
+    let password_str: String = password.iter().filter_map(|&n| char::from_u32(n)).collect();
     println!("{}", password_str)
 }
 
@@ -73,4 +81,12 @@ fn choose_rand(min: i32, max: i32) -> i32 {
     let result = rand_val % range;
 
     min + result
+}
+
+fn avoid_chars(ord: u32, bad_chars: String) -> u32 {
+    // turn input into a char
+    let temp_char: char = std::char::from_u32(rando as u32).unwrap();
+
+    // check if char is avoid list
+    if bad_chars.contains(temp_char) {}
 }
