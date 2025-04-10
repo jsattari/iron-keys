@@ -5,15 +5,27 @@ mod utils;
 #[command(author, version, about)]
 /// Create passwords
 struct Args {
-    #[arg(short('l'), long, default_value = "8", required(false))]
+    #[arg(
+        short('l'),
+        long,
+        default_value = "8",
+        required(false),
+        help = "Desired length of password"
+    )]
     // Desired length of password
     length: String,
 
-    #[arg(short('r'), long, required(false))]
+    #[arg(short('r'), long, required(false), help = "Prevents repeat characters")]
     // Disable repeating characters
     repeats: bool,
 
-    #[arg(short('a'), long, required(false), default_value = "")]
+    #[arg(
+        short('a'),
+        long,
+        required(false),
+        default_value = "",
+        help = "Characters that should be excluded. Should be entered as a string like 'abc123'"
+    )]
     // Characters to be excluded
     avoid: String,
 }
