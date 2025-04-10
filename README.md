@@ -19,9 +19,9 @@ iron-keys -l 12
 
 ## Options
 ```
--l, --length <LENGTH>  [default: 8]
-  -r, --repeats          
-  -a, --avoid <AVOID>    [default: ]
+  -l, --length <LENGTH>  Desired length of password [default: 8]
+  -r, --repeats          Prevents repeat characters
+  -a, --avoid <AVOID>    Characters that should be excluded. Should be entered as a string like 'abc123' [default: ]
   -h, --help             Print help
   -V, --version          Print version
 ```
