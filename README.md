@@ -2,7 +2,7 @@
 
 A simple password generator
 
-### Installation (Linux & macOS)
+## Installation (Linux & macOS)
 ```
 wget https://github.com/jsattari/iron-keys/releases/download/v1.0.0/iron-keys.tar.gz
 
